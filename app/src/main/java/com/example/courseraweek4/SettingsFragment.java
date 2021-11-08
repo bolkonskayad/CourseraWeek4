@@ -17,52 +17,57 @@ public class SettingsFragment extends Fragment {
     private RadioGroup settingsRG;
 
     private SharedPreferencesHelper mSharedPreferencesHelper;
+    String url;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        return view;
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+
         mSharedPreferencesHelper = new SharedPreferencesHelper(getActivity());
         String selectedBrowser = mSharedPreferencesHelper.getSearching();
 
-        settingsRG = v.findViewById(R.id.settings_rg);
+        settingsRG = view.findViewById(R.id.settings_rg);
         settingsRG.setOnCheckedChangeListener(listener);
 
-        googleRB = v.findViewById(R.id.google_rb);
-        yandexRB = v.findViewById(R.id.yandex_rb);
-        bingRB = v.findViewById(R.id.bing_rb);
+        googleRB = view.findViewById(R.id.google_rb);
+        yandexRB = view.findViewById(R.id.yandex_rb);
+        bingRB = view.findViewById(R.id.bing_rb);
 
-        if (selectedBrowser != null) {
-            if (selectedBrowser.equals(Browsers.GOOGLE)) {
+        Browsers browsers = Browsers.valueOf(selectedBrowser);
+
+        switch (browsers) {
+            case GOOGLE:
                 googleRB.setChecked(true);
-            }
-            if (selectedBrowser.equals(Browsers.YANDEX)) {
+                break;
+            case YANDEX:
                 yandexRB.setChecked(true);
-            }
-            if (selectedBrowser.equals(Browsers.BING)) {
+                break;
+            case BING:
                 bingRB.setChecked(true);
-            }
+                break;
         }
-        return v;
     }
 
     private RadioGroup.OnCheckedChangeListener listener = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup radioGroup, int checkId) {
+
             switch (checkId) {
                 case R.id.google_rb:
-                    mSharedPreferencesHelper.addSearching(Browsers.GOOGLE);
-                    showBrowser(Browsers.GOOGLE);
+                    url = Browsers.GOOGLE.toString();
                     break;
                 case R.id.yandex_rb:
-                    mSharedPreferencesHelper.addSearching(Browsers.YANDEX);
-                    showBrowser(Browsers.YANDEX);
+                    url = Browsers.YANDEX.toString();
                     break;
                 case R.id.bing_rb:
-                    mSharedPreferencesHelper.addSearching(Browsers.BING);
-                    showBrowser(Browsers.BING);
+                    url = Browsers.BING.toString();
                     break;
             }
+            mSharedPreferencesHelper.addSearching(url);
+            showBrowser(url);
         }
     };
 

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferencesHelper mSharedPreferencesHelper = new SharedPreferencesHelper(this);
 
         if (mSharedPreferencesHelper == null) {
-            mSharedPreferencesHelper.addSearching(Browsers.GOOGLE);
+            mSharedPreferencesHelper.addSearching(Browsers.GOOGLE.toString());
         }
     }
 
