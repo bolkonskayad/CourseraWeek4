@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Coursera Week 4</string>
+    <string name="settings">Настройки</string>
+    <string name="search">Поиск</string>
+    <string name="logout">Выйти</string>
+    <string name="google">Google</string>
+    <string name="yandex">Яндекс</string>
+    <string name="bing">Bing</string>
+    <string name="choice_browser">Выберите поисковую систему:</string>
+    <string name="enter_text">Введите поисковыйзапрос</string>
+    <string name="zhirinovsky">Помолчите. Помолчать! Бессовестная, сидишь здесь, фигуристка… Вы Майдан готовите, молчать нужно, сидеть, — лидер партии выступает! Бессовестная</string>
 </resources>
